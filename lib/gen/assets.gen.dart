@@ -20,8 +20,11 @@ class $AssetsIconGen {
   /// File path: assets/icon/goku.svg
   SvgGenImage get goku => const SvgGenImage('assets/icon/goku.svg');
 
+  /// File path: assets/icon/user.svg
+  SvgGenImage get user => const SvgGenImage('assets/icon/user.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [berserk, goku];
+  List<SvgGenImage> get values => [berserk, goku, user];
 }
 
 class $AssetsImageGen {

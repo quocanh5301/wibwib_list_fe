@@ -3,11 +3,14 @@ import 'package:anime_list/gen/assets.gen.dart';
 import 'package:anime_list/gen/colors.gen.dart';
 import 'package:anime_list/injection.dart';
 import 'package:anime_list/presentation/widgets/buttons/round_button.dart';
+import 'package:anime_list/presentation/widgets_controller/custom_dialog_controller.dart';
 import 'package:anime_list/utils/helper/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+
+//! DON'T use this widget directly, use it via it's controller
 class CustomDialog extends StatelessWidget {
   final String title;
   final String mess;
@@ -19,6 +22,18 @@ class CustomDialog extends StatelessWidget {
     required this.mess,
     required this.actions,
   }) : super(key: key);
+
+  show(BuildContext parentContext) {
+    showDialog(
+      barrierDismissible: false,
+      context: parentContext,
+      builder: (dialogContext) {
+        return build(dialogContext);
+      },
+    ).then((value) {
+      getIt<CustomDialogController>().clear();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -4,10 +4,11 @@ import 'package:anime_list/gen/colors.gen.dart';
 import 'package:anime_list/injection.dart';
 import 'package:anime_list/presentation/widgets/buttons/round_button.dart';
 import 'package:anime_list/presentation/widgets/buttons/round_gradient_button.dart';
-import 'package:anime_list/presentation/widgets/dialog/custom_alert_dialog.dart';
+import 'package:anime_list/presentation/widgets/dialog/custom_dialog.dart';
 import 'package:anime_list/presentation/widgets/animations/twist_progress_indicator.dart';
 import 'package:anime_list/presentation/widgets/progress_indicator/custom_progress_indicator.dart';
-import 'package:anime_list/presentation/widgets/progress_indicator/custom_progress_indicator_controller.dart';
+import 'package:anime_list/presentation/widgets_controller/custom_dialog_controller.dart';
+import 'package:anime_list/presentation/widgets_controller/custom_progress_indicator_controller.dart';
 import 'package:anime_list/presentation/widgets/text_field/round_text_field.dart';
 import 'package:anime_list/presentation/widgets/text_field/underline_text.dart';
 import 'package:anime_list/utils/helper/screen_size.dart';
@@ -26,7 +27,6 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController _emailTextController = TextEditingController();
 
   final TextEditingController _passwordTextController = TextEditingController();
-  // late BuildContext loadingCtx;
 
   _login() {
     if (_formKey.currentState!.validate()) {
@@ -34,45 +34,6 @@ class LoginScreen extends StatelessWidget {
           username: _emailTextController.value.text,
           password: _passwordTextController.value.text));
     }
-  }
-
-  _showAlert(
-    BuildContext loginContext,
-    String title,
-    String mess,
-  ) {
-    showDialog(
-      barrierDismissible: false,
-      context: loginContext,
-      builder: (dialogContext) {
-        return CustomDialog(
-          title: title,
-          mess: mess,
-          actions: [
-            RoundButton(
-              title: "Confirm",
-              enabled: true,
-              color: ColorName.success,
-              textColor: Colors.black,
-              onTap: () {
-                Navigator.of(dialogContext).pop();
-                getIt<LoginPageBloc>().add(ResetLogin());
-              },
-            ),
-            RoundButton(
-              title: "Cancel",
-              enabled: true,
-              color: ColorName.primaryColor,
-              textColor: Colors.white,
-              onTap: () {
-                Navigator.of(dialogContext).pop();
-                getIt<LoginPageBloc>().add(ResetLogin());
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -88,13 +49,41 @@ class LoginScreen extends StatelessWidget {
                 .showLoading(loginContext);
           } else if (state is LoginSuccessState) {
             getIt<CustomProgressIndicatorController>()
-                .hideLoading(loginContext);
+                .hideLoading();
             // sharePref.saveUserToSharedPreferences(state.model);
             Navigator.of(context).pushReplacementNamed("/home");
           } else if (state is LoginFailState) {
             getIt<CustomProgressIndicatorController>()
-                .hideLoading(loginContext);
-            _showAlert(loginContext, "Fail to login", state.error);
+                .hideLoading();
+            getIt<CustomDialogController>().showDialog(
+              loginContext,
+              CustomDialog(
+                title: "Fail to login",
+                mess: state.error,
+                actions: [
+                  RoundButton(
+                    title: "Confirm",
+                    enabled: true,
+                    color: ColorName.success,
+                    textColor: Colors.black,
+                    onTap: () {
+                      getIt<CustomDialogController>().hideDialog();
+                      getIt<LoginPageBloc>().add(ResetLogin());
+                    },
+                  ),
+                  RoundButton(
+                    title: "Cancel",
+                    enabled: true,
+                    color: ColorName.primaryColor,
+                    textColor: Colors.white,
+                    onTap: () {
+                      getIt<CustomDialogController>().hideDialog();
+                      getIt<LoginPageBloc>().add(ResetLogin());
+                    },
+                  ),
+                ],
+              ),
+            );
           }
         },
         builder: (context, state) {

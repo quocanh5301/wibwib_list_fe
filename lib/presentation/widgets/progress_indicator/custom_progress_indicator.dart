@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:anime_list/presentation/widgets_controller/custom_progress_indicator_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -9,6 +10,7 @@ import 'package:anime_list/injection.dart';
 import 'package:anime_list/presentation/widgets/animations/twist_progress_indicator.dart';
 import 'package:anime_list/utils/helper/screen_size.dart';
 
+//! DON'T use this widget directly, use it via it's controller
 class CustomProgressIndicator extends StatelessWidget {
   CustomProgressIndicator({
     Key? key,
@@ -19,11 +21,9 @@ class CustomProgressIndicator extends StatelessWidget {
         context: parentCtx,
         builder: ((loadingCtx) {
           return build(loadingCtx);
-        }));
-  }
-
-  hideLoading(BuildContext parentCtx) {
-    Navigator.of(parentCtx).pop();
+        })).then((value) {
+      getIt<CustomProgressIndicatorController>().clear();
+    });
   }
 
   @override

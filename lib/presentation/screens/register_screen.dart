@@ -7,8 +7,8 @@ import 'package:anime_list/gen/colors.gen.dart';
 import 'package:anime_list/injection.dart';
 import 'package:anime_list/presentation/widgets/buttons/round_button.dart';
 import 'package:anime_list/presentation/widgets/buttons/round_gradient_button.dart';
-import 'package:anime_list/presentation/widgets/dialog/custom_alert_dialog.dart';
-import 'package:anime_list/presentation/widgets/progress_indicator/custom_progress_indicator_controller.dart';
+import 'package:anime_list/presentation/widgets/dialog/custom_dialog.dart';
+import 'package:anime_list/presentation/widgets_controller/custom_progress_indicator_controller.dart';
 import 'package:anime_list/presentation/widgets/text_field/round_text_field.dart';
 import 'package:anime_list/presentation/widgets/text_field/underline_text.dart';
 import 'package:anime_list/utils/helper/screen_size.dart';
@@ -111,12 +111,12 @@ class RegisterScreen extends StatelessWidget {
                 .showLoading(registerContext);
           } else if (state is RegisterSuccessState) {
             getIt<CustomProgressIndicatorController>()
-                .hideLoading(registerContext);
+                .hideLoading();
             _showNotify(registerContext, "Success",
                 "Account registered, return to login screen");
           } else if (state is RegisterFailState) {
             getIt<CustomProgressIndicatorController>()
-                .hideLoading(registerContext);
+                .hideLoading();
             _showAlert(registerContext, "Fail to register", state.error);
           }
         },
