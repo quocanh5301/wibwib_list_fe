@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:anime_list/gen/colors.gen.dart';
 
 class RoundTextField extends StatefulWidget {
@@ -16,20 +17,24 @@ class RoundTextField extends StatefulWidget {
   final Color? borderColor;
   final Color? focusBorderColor;
   final Color? inputColor;
+  final bool? enable;
+  final Color? backgroundColor;
 
   const RoundTextField({
     Key? key,
     this.hint,
     this.label,
+    this.error,
     this.controller,
     this.suffix,
     this.prefix,
     this.onChanged,
     this.validator,
-    this.error,
     this.borderColor,
     this.focusBorderColor,
     this.inputColor,
+    this.enable,
+    this.backgroundColor,
   }) : super(key: key);
 
   @override
@@ -43,12 +48,14 @@ class _RoundTextFieldState extends State<RoundTextField> {
       controller: widget.controller,
       validator: widget.validator,
       onChanged: widget.onChanged,
+      enabled: widget.enable,
       style: TextStyle(
         color: widget.inputColor ?? Colors.black,
         fontWeight: FontWeight.w700, 
       ),
       decoration: InputDecoration(
         // isDense: true,
+        fillColor: widget.backgroundColor,
         contentPadding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
         labelText: widget.label,
         hintText: widget.hint,

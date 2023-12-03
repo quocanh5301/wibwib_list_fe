@@ -13,7 +13,7 @@ class UserDataModel {
   String userEmail;
   int watchedNum;
   int favoriteNum;
-  DateTime joinSince;
+  int joinSince;
   String? image;
 
   UserDataModel({
@@ -33,7 +33,7 @@ class UserDataModel {
       'userEmail': instance.userEmail,
       'watchedNum': instance.watchedNum,
       'favoriteNum': instance.favoriteNum,
-      'joinSince': instance.joinSince.millisecondsSinceEpoch,
+      'joinSince': instance.joinSince,
       'image': instance.image,
     };
   }
@@ -45,18 +45,18 @@ class UserDataModel {
       userEmail: map['user_email'] as String,
       watchedNum: map['watched_num'] as int,
       favoriteNum: map['favorite_num'] as int,
-      joinSince: date.dateParseEpochToDateTime(map['date'] as int),
+      joinSince: map['date'] as int,
       image: map['image'] == null ? "" : map['image'] as String,
     );
   }
 
   String toJson() => json.encode(toMap(this));
 
-  factory UserDataModel.fromJson(Map<String, dynamic> json) =>
-      UserDataModel.fromMap(json);
-
   // factory UserDataModel.fromJson(Map<String, dynamic> json) =>
-  //     _$UserDataModelFromJson(json);
+  //     UserDataModel.fromMap(json);
+
+  factory UserDataModel.fromJson(Map<String, dynamic> json) =>
+      _$UserDataModelFromJson(json);
 
   @override
   String toString() {

@@ -9,14 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-
 //! DON'T use this widget directly, use it via it's controller
-class CustomDialog extends StatelessWidget {
+class CustomFloatingDialog extends StatelessWidget {
   final String title;
   final String mess;
   final List<Widget> actions;
 
-  const CustomDialog({
+  const CustomFloatingDialog({
     Key? key,
     required this.title,
     required this.mess,

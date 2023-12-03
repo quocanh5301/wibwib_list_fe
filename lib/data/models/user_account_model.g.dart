@@ -13,7 +13,7 @@ UserDataModel _$UserDataModelFromJson(Map<String, dynamic> json) =>
       userEmail: json['userEmail'] as String,
       watchedNum: json['watchedNum'] as int,
       favoriteNum: json['favoriteNum'] as int,
-      joinSince: DateTime.parse(json['joinSince'] as String),
+      joinSince: json['joinSince'] as int,
       image: json['image'] as String?,
     );
 
@@ -24,6 +24,6 @@ Map<String, dynamic> _$UserDataModelToJson(UserDataModel instance) =>
       'userEmail': instance.userEmail,
       'watchedNum': instance.watchedNum,
       'favoriteNum': instance.favoriteNum,
-      'joinSince': instance.joinSince.toIso8601String(),
+      'joinSince': instance.joinSince,
       'image': instance.image,
     };

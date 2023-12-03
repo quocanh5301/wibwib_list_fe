@@ -6,7 +6,7 @@ import 'package:anime_list/presentation/widgets/buttons/round_button.dart';
 import 'package:anime_list/presentation/widgets/buttons/round_gradient_button.dart';
 import 'package:anime_list/presentation/widgets/dialog/custom_dialog.dart';
 import 'package:anime_list/presentation/widgets/animations/twist_progress_indicator.dart';
-import 'package:anime_list/presentation/widgets/progress_indicator/custom_progress_indicator.dart';
+import 'package:anime_list/presentation/widgets/indicator/custom_progress_indicator.dart';
 import 'package:anime_list/presentation/widgets_controller/custom_dialog_controller.dart';
 import 'package:anime_list/presentation/widgets_controller/custom_progress_indicator_controller.dart';
 import 'package:anime_list/presentation/widgets/text_field/round_text_field.dart';
@@ -48,16 +48,14 @@ class LoginScreen extends StatelessWidget {
             getIt<CustomProgressIndicatorController>()
                 .showLoading(loginContext);
           } else if (state is LoginSuccessState) {
-            getIt<CustomProgressIndicatorController>()
-                .hideLoading();
-            // sharePref.saveUserToSharedPreferences(state.model);
+            getIt<CustomProgressIndicatorController>().hideLoading();
+            sharePref.saveUserToSharedPreferences(state.model);
             Navigator.of(context).pushReplacementNamed("/home");
           } else if (state is LoginFailState) {
-            getIt<CustomProgressIndicatorController>()
-                .hideLoading();
+            getIt<CustomProgressIndicatorController>().hideLoading();
             getIt<CustomDialogController>().showDialog(
               loginContext,
-              CustomDialog(
+              CustomFloatingDialog(
                 title: "Fail to login",
                 mess: state.error,
                 actions: [

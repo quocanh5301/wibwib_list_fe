@@ -30,6 +30,14 @@ class $AssetsIconGen {
 class $AssetsImageGen {
   const $AssetsImageGen();
 
+  /// File path: assets/image/default_profile_image.png
+  AssetGenImage get defaultProfileImage =>
+      const AssetGenImage('assets/image/default_profile_image.png');
+
+  /// File path: assets/image/goku_cloud.png
+  AssetGenImage get gokuCloud =>
+      const AssetGenImage('assets/image/goku_cloud.png');
+
   /// File path: assets/image/login_background.jpeg
   AssetGenImage get loginBackground =>
       const AssetGenImage('assets/image/login_background.jpeg');
@@ -56,6 +64,8 @@ class $AssetsImageGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        defaultProfileImage,
+        gokuCloud,
         loginBackground,
         logo,
         naruto,
@@ -66,11 +76,31 @@ class $AssetsImageGen {
       ];
 }
 
+class $AssetsSpecialGen {
+  const $AssetsSpecialGen();
+
+  /// File path: assets/special/cloud1.png
+  AssetGenImage get cloud1 => const AssetGenImage('assets/special/cloud1.png');
+
+  /// File path: assets/special/cloud2.png
+  AssetGenImage get cloud2 => const AssetGenImage('assets/special/cloud2.png');
+
+  /// File path: assets/special/cloud3.png
+  AssetGenImage get cloud3 => const AssetGenImage('assets/special/cloud3.png');
+
+  /// File path: assets/special/cloud4.png
+  AssetGenImage get cloud4 => const AssetGenImage('assets/special/cloud4.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [cloud1, cloud2, cloud3, cloud4];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsIconGen icon = $AssetsIconGen();
   static const $AssetsImageGen image = $AssetsImageGen();
+  static const $AssetsSpecialGen special = $AssetsSpecialGen();
 }
 
 class AssetGenImage {

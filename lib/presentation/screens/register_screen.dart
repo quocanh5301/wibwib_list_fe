@@ -49,7 +49,7 @@ class RegisterScreen extends StatelessWidget {
       barrierDismissible: false,
       context: registerContext,
       builder: (dialogContext) {
-        return CustomDialog(
+        return CustomFloatingDialog(
           title: title,
           mess: mess,
           actions: [
@@ -79,7 +79,7 @@ class RegisterScreen extends StatelessWidget {
       barrierDismissible: false,
       context: loginContext,
       builder: (dialogContext) {
-        return CustomDialog(
+        return CustomFloatingDialog(
           title: title,
           mess: mess,
           actions: [
@@ -110,13 +110,11 @@ class RegisterScreen extends StatelessWidget {
             getIt<CustomProgressIndicatorController>()
                 .showLoading(registerContext);
           } else if (state is RegisterSuccessState) {
-            getIt<CustomProgressIndicatorController>()
-                .hideLoading();
+            getIt<CustomProgressIndicatorController>().hideLoading();
             _showNotify(registerContext, "Success",
                 "Account registered, return to login screen");
           } else if (state is RegisterFailState) {
-            getIt<CustomProgressIndicatorController>()
-                .hideLoading();
+            getIt<CustomProgressIndicatorController>().hideLoading();
             _showAlert(registerContext, "Fail to register", state.error);
           }
         },

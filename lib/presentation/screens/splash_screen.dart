@@ -5,6 +5,7 @@ import 'package:anime_list/presentation/screens/home_screen.dart';
 import 'package:anime_list/presentation/screens/login_screen.dart';
 import 'package:anime_list/presentation/widgets/animations/fade_animation.dart';
 import 'package:anime_list/presentation/widgets_controller/custom_dialog_controller.dart';
+import 'package:anime_list/presentation/widgets_controller/custom_image_picker_controller.dart';
 import 'package:anime_list/presentation/widgets_controller/custom_progress_indicator_controller.dart';
 import 'package:anime_list/utils/helper/screen_size.dart';
 import 'package:flutter/material.dart';
@@ -29,21 +30,25 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _initApp() async {
     initializeDependencies();
-    getIt.registerSingleton<CustomProgressIndicatorController>(CustomProgressIndicatorController());
+    getIt.registerSingleton<CustomProgressIndicatorController>(
+        CustomProgressIndicatorController());
     getIt.registerSingleton<CustomDialogController>(CustomDialogController());
+    getIt.registerSingleton<CustomImagePickerController>(
+        CustomImagePickerController());
 
     await Future.delayed(const Duration(milliseconds: 1500));
     Future<UserDataModel?> getCurrentUser =
         sharePreferences.getUserFromSharedPreferences();
+
+    Navigator.of(context).pushReplacementNamed('/home');
+    getCurrentUser.then((user) {
+      if (user == null) {
+        Navigator.of(context).pushReplacementNamed('/login');
+      } else {
+        // sharePreferences.saveUserToSharedPreferences(user);
         Navigator.of(context).pushReplacementNamed('/home');
-    // getCurrentUser.then((user) {
-    //   if (user == null) {
-    //     Navigator.of(context).pushReplacementNamed('/login');
-    //   } else {
-    //     // sharePreferences.saveUserToSharedPreferences(user);
-    //     Navigator.of(context).pushReplacementNamed('/home');
-    //   }
-    // },);
+      }
+    },);
     //TODO impliment app initialize here
   }
 

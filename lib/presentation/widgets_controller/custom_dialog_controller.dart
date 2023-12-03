@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomDialogController {
   CustomDialogController();
-  CustomDialog? _currentCustomDialog;
+  CustomFloatingDialog? _currentCustomDialog;
   BuildContext? _currentCtx;
 
   clear() {
@@ -12,7 +12,7 @@ class CustomDialogController {
     _currentCustomDialog = null;
   }
 
-  showDialog(BuildContext parentCtx, CustomDialog customDialog) {
+  showDialog(BuildContext parentCtx, CustomFloatingDialog customDialog) {
     if (_currentCustomDialog == null) {
       _currentCtx = parentCtx;
       _currentCustomDialog = customDialog;
