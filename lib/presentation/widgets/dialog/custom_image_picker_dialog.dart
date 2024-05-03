@@ -1,25 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
-import 'package:anime_list/data/models/user_account_model.dart';
+import 'package:anime_list/utils/helper/image_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:anime_list/data/models/user_account_model.dart';
 import 'package:anime_list/data/repositories/user_repository.dart';
 import 'package:anime_list/gen/colors.gen.dart';
 import 'package:anime_list/injection.dart';
 import 'package:anime_list/presentation/widgets_controller/custom_image_picker_controller.dart';
-import 'package:anime_list/utils/constant/enum.dart';
 import 'package:anime_list/utils/helper/share_preferences.dart' as sharePref;
 
 class CustomImagePickerDialog extends StatelessWidget {
-  final ImagePickerType imagePickerType;
   const CustomImagePickerDialog({
     Key? key,
-    required this.imagePickerType,
   }) : super(key: key);
 
   show(BuildContext parentCtc) {
@@ -34,38 +31,42 @@ class CustomImagePickerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 115,
       child: Column(
         children: <Widget>[
-          Container(
+          SizedBox(
             height: 50,
             child: GestureDetector(
               onTap: () async {
-                UserDataModel? currentUser =
+                 UserDataModel? currentUser =
                     await sharePref.getUserFromSharedPreferences();
 
-                var image =
-                    await ImagePicker.pickImage(source: ImageSource.camera);
+                final image = await getIt<ImageHelper>()
+                    .getImage(ImageSource.camera, false);
                 if (currentUser != null) {
-                  if (currentUser.image != null) {
-                    try {
-                      getIt<IUserRepository>().updateImage(
-                        imageId: currentUser.image!,
-                        image: image,
-                        userId: currentUser.id,
-                      );
-                    } catch (e) {
-                      print("error is: $e");
-                    }
-                  } else {
-                    try {
-                      getIt<IUserRepository>().uploadImage(
-                        image: image,
-                        userId: currentUser.id,
-                      );
-                    } catch (e) {
-                      print("error is: $e");
+                  if (image != null) {
+                    if (currentUser.image != null) {
+                      try {
+                        final croppedImg = await getIt<ImageHelper>()
+                            .cropImage(image[0].path, CropStyle.circle);
+                        getIt<IUserRepository>().updateImage(
+                          imageId: currentUser.image!,
+                          image: File(croppedImg!.path),
+                          userId: currentUser.id,
+                        );
+                      } catch (e) {
+                        print("error is: $e");
+                      }
+                    } else {
+                      try {
+                        getIt<IUserRepository>().uploadImage(
+                          image: File(image![0].path),
+                          userId: currentUser.id,
+                        );
+                      } catch (e) {
+                        print("error is: $e");
+                      }
                     }
                   }
                 } else {
@@ -88,34 +89,38 @@ class CustomImagePickerDialog extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 50,
             child: GestureDetector(
               onTap: () async {
                 UserDataModel? currentUser =
                     await sharePref.getUserFromSharedPreferences();
 
-                var image =
-                    await ImagePicker.pickImage(source: ImageSource.gallery);
+                final image = await getIt<ImageHelper>()
+                    .getImage(ImageSource.gallery, false);
                 if (currentUser != null) {
-                  if (currentUser.image != null) {
-                    try {
-                      getIt<IUserRepository>().updateImage(
-                        imageId: currentUser.image!,
-                        image: image,
-                        userId: currentUser.id,
-                      );
-                    } catch (e) {
-                      print("error is: $e");
-                    }
-                  } else {
-                    try {
-                      getIt<IUserRepository>().uploadImage(
-                        image: image,
-                        userId: currentUser.id,
-                      );
-                    } catch (e) {
-                      print("error is: $e");
+                  if (image != null) {
+                    if (currentUser.image != null) {
+                      try {
+                        final croppedImg = await getIt<ImageHelper>()
+                            .cropImage(image[0].path, CropStyle.circle);
+                        getIt<IUserRepository>().updateImage(
+                          imageId: currentUser.image!,
+                          image: File(croppedImg!.path),
+                          userId: currentUser.id,
+                        );
+                      } catch (e) {
+                        print("error is: $e");
+                      }
+                    } else {
+                      try {
+                        getIt<IUserRepository>().uploadImage(
+                          image: File(image![0].path),
+                          userId: currentUser.id,
+                        );
+                      } catch (e) {
+                        print("error is: $e");
+                      }
                     }
                   }
                 } else {

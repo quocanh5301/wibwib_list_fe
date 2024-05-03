@@ -5,17 +5,12 @@ import 'package:anime_list/injection.dart';
 import 'package:anime_list/presentation/widgets/buttons/round_button.dart';
 import 'package:anime_list/presentation/widgets/buttons/round_gradient_button.dart';
 import 'package:anime_list/presentation/widgets/dialog/custom_dialog.dart';
-import 'package:anime_list/presentation/widgets/animations/twist_progress_indicator.dart';
-import 'package:anime_list/presentation/widgets/indicator/custom_progress_indicator.dart';
 import 'package:anime_list/presentation/widgets_controller/custom_dialog_controller.dart';
 import 'package:anime_list/presentation/widgets_controller/custom_progress_indicator_controller.dart';
 import 'package:anime_list/presentation/widgets/text_field/round_text_field.dart';
 import 'package:anime_list/presentation/widgets/text_field/underline_text.dart';
 import 'package:anime_list/utils/helper/screen_size.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anime_list/utils/helper/share_preferences.dart' as sharePref;
 

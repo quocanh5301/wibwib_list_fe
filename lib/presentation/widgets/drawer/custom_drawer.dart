@@ -1,13 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:anime_list/gen/assets.gen.dart';
 import 'package:anime_list/gen/colors.gen.dart';
 import 'package:anime_list/injection.dart';
 import 'package:anime_list/presentation/widgets/drawer/custom_drawer_header.dart';
-import 'package:anime_list/presentation/widgets/drawer/custom_drawer_item.dart';
 import 'package:anime_list/utils/helper/screen_size.dart';
 
 class CustomDrawer extends StatelessWidget {

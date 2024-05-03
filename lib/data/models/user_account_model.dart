@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:anime_list/utils/helper/date_time_helper.dart' as date;
 
 part 'user_account_model.g.dart';
 

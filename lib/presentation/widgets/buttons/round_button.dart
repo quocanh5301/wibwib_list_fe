@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:anime_list/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class RoundButton extends StatelessWidget {
   final void Function()? onTap;
@@ -46,7 +44,7 @@ class RoundButton extends StatelessWidget {
         onPressed: onTap,
         child: Text(
           title,
-          style: Theme.of(context).textTheme.button!.copyWith(
+          style: Theme.of(context).textTheme.labelLarge!.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
                 color: enabled ? textColor : Colors.grey.shade600,

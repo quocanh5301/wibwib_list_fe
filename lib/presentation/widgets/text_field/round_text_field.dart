@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:anime_list/gen/colors.gen.dart';
 
@@ -10,10 +8,10 @@ class RoundTextField extends StatefulWidget {
   final String? label;
   final String? error;
   final TextEditingController? controller;
+  final String? Function(String? value)? validator;
   final Widget? suffix;
   final Widget? prefix;
   final Function(String)? onChanged;
-  final String? Function(String? value)? validator;
   final Color? borderColor;
   final Color? focusBorderColor;
   final Color? inputColor;

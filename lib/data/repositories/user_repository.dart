@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:anime_list/data/models/user_account_model.dart';
 import 'package:anime_list/services/api/api_service.dart';
@@ -156,6 +155,7 @@ class UserRepository extends IUserRepository {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 
   @override

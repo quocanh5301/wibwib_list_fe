@@ -27,14 +27,12 @@ Future<UserDataModel?> getUserFromSharedPreferences() async {
     // Retrieve the JSON string from shared preferences
     String? userJson = prefs.getString('user');
     print("get userJson $userJson");
-    if (userJson != null) {
-      print("jsonDecode ${jsonDecode(userJson)}");
-      // Parse the JSON string and create a User object
-      Map<String, dynamic> userMap = jsonDecode(userJson);
-      print("userMap $userMap");
-      return UserDataModel.fromJson(userMap);
-    }
-  } catch (e) {
+    print("jsonDecode ${jsonDecode(userJson)}");
+    // Parse the JSON string and create a User object
+    Map<String, dynamic> userMap = jsonDecode(userJson);
+    print("userMap $userMap");
+    return UserDataModel.fromJson(userMap);
+    } catch (e) {
     print(e);
     return null;
   }

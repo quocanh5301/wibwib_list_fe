@@ -192,7 +192,7 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(newUserData.toJson());
+    _data.addAll(newUserData.toMap(newUserData));
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,

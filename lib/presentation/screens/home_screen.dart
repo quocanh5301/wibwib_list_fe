@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       await getIt<IUserRepository>().getImage(
                     imageId: currentUser!.image!,
                   );
-                  if (currentUser != null && imageResponse != null) {
+                  if (imageResponse != null) {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (_) => ProfileScreen(
                           currentUser: currentUser,

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:anime_list/data/models/user_account_model.dart';
 import 'package:anime_list/data/repositories/user_repository.dart';
-import 'package:anime_list/services/response_models/login_response_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';

@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:anime_list/presentation/widgets_controller/custom_progress_indicator_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:anime_list/gen/assets.gen.dart';
 import 'package:anime_list/gen/colors.gen.dart';

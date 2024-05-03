@@ -2,12 +2,9 @@
 import 'package:anime_list/gen/assets.gen.dart';
 import 'package:anime_list/gen/colors.gen.dart';
 import 'package:anime_list/injection.dart';
-import 'package:anime_list/presentation/widgets/buttons/round_button.dart';
 import 'package:anime_list/presentation/widgets_controller/custom_dialog_controller.dart';
 import 'package:anime_list/utils/helper/screen_size.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 //! DON'T use this widget directly, use it via it's controller
 class CustomFloatingDialog extends StatelessWidget {

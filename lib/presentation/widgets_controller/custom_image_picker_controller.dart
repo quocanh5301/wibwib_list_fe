@@ -1,6 +1,5 @@
 import 'package:anime_list/exception.dart';
 import 'package:anime_list/presentation/widgets/dialog/custom_image_picker_dialog.dart';
-import 'package:anime_list/utils/constant/enum.dart';
 import 'package:flutter/material.dart';
 
 class CustomImagePickerController {
@@ -13,10 +12,10 @@ class CustomImagePickerController {
     _currentCustomImagePickerDialog = null;
   }
 
-  showPicker(BuildContext parentCtx, ImagePickerType imagePickerType) {
+  showPicker(BuildContext parentCtx) {
     if (_currentCustomImagePickerDialog == null) {
       _currentCtx = parentCtx;
-      _currentCustomImagePickerDialog = CustomImagePickerDialog(imagePickerType: imagePickerType,);
+      _currentCustomImagePickerDialog = CustomImagePickerDialog();
       _currentCustomImagePickerDialog!.show(_currentCtx!);
     } else {
       throw CustomException('Picker already show at ${_currentCtx}');

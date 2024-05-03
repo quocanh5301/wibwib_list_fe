@@ -1,9 +1,7 @@
 import 'package:anime_list/gen/colors.gen.dart';
-import 'package:anime_list/injection.dart';
 import 'package:anime_list/presentation/screens/splash_screen.dart';
 import 'package:anime_list/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {

@@ -13,8 +13,6 @@ import 'package:anime_list/presentation/widgets/text_field/round_text_field.dart
 import 'package:anime_list/presentation/widgets/text_field/underline_text.dart';
 import 'package:anime_list/utils/helper/screen_size.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anime_list/utils/helper/date_time_helper.dart' as date;
 
